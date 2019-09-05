@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="tws.repository.EmployeeMapper">
-    <select id="selectAll" resultType="tws.entity.Employee">
-        select * from `employee`;
-    </select>
+<mapper namespace="tws.repository.PackagerMapper">
+	<select id="selectAll" resultType="tws.entity.Packager">
+		select * from `packager`;
+	</select>
 
-    <insert id="insert" parameterType="tws.entity.Employee">
-       insert into `employee`(`id`,`name`,`age`) values(#{employee.id},#{employee.name},#{employee.age});
-    </insert>
+	<insert id="insert" parameterType="tws.entity.Packager">
+		insert into `packager`(`id`,`receiver`,`phone`,`weight`,`status`)
+		values(#{packager.id},#{packager.receiver},#{packager.phone},#{packager.weight},'未取件');
+	</insert>
+
+	<update id="update">
+		update `packager` set getTime=#{getTime},status='已预约'  where id=#{id}
+	</update>
 </mapper>
